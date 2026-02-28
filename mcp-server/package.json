@@ -1,0 +1,24 @@
+{
+  "name": "codemuse-mcp-server",
+  "version": "1.0.0",
+  "description": "CodeMuse MCP Server - Creative coding tools for GitHub Copilot",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "codemuse-mcp-server": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.7.0",
+    "@types/node": "^20.0.0"
+  },
+  "keywords": ["mcp", "github-copilot", "creative-coding", "generative-art", "agents-league"],
+  "license": "MIT"
+}
