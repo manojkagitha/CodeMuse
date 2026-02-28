@@ -1,4 +1,4 @@
-import { Palette, Github, Sparkles } from 'lucide-react';
+import { Github, Sparkles, Layers } from 'lucide-react';
 
 interface HeaderProps {
   view: 'gallery' | 'studio';
@@ -7,57 +7,65 @@ interface HeaderProps {
 
 export default function Header({ view, onViewChange }: HeaderProps) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-indigo-500/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="fixed top-0 left-0 right-0 z-50" style={{
+      background: 'rgba(3, 0, 20, 0.6)',
+      backdropFilter: 'blur(24px) saturate(1.3)',
+      borderBottom: '1px solid rgba(139, 92, 246, 0.06)',
+    }}>
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => onViewChange('gallery')}>
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center">
-              <Palette className="w-5 h-5 text-white" />
+          <div
+            className="flex items-center gap-2.5 cursor-pointer group"
+            onClick={() => onViewChange('gallery')}
+          >
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/40 transition-shadow">
+              <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <div>
-              <h1 className="text-lg font-bold text-white tracking-tight">
-                Code<span className="text-indigo-400">Muse</span>
-              </h1>
-              <p className="text-[10px] text-slate-500 -mt-1">AI Creative Coding Companion</p>
-            </div>
+            <span
+              className="text-base font-bold tracking-tight"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              <span className="text-white">Code</span>
+              <span className="text-purple-400">Muse</span>
+            </span>
           </div>
 
           {/* Navigation */}
-          <nav className="flex items-center gap-2">
+          <nav className="flex items-center gap-1">
             <button
               onClick={() => onViewChange('gallery')}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
                 view === 'gallery'
-                  ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-purple-500/15 text-purple-300 shadow-inner shadow-purple-500/10'
+                  : 'text-[var(--text-dim)] hover:text-white hover:bg-white/[0.03]'
               }`}
             >
-              <Sparkles className="w-4 h-4 inline mr-1.5 -mt-0.5" />
+              <Sparkles className="w-3.5 h-3.5 inline mr-1 -mt-px" />
               Gallery
             </button>
             <button
               onClick={() => onViewChange('studio')}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
                 view === 'studio'
-                  ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-purple-500/15 text-purple-300 shadow-inner shadow-purple-500/10'
+                  : 'text-[var(--text-dim)] hover:text-white hover:bg-white/[0.03]'
               }`}
             >
-              <Palette className="w-4 h-4 inline mr-1.5 -mt-0.5" />
+              <Layers className="w-3.5 h-3.5 inline mr-1 -mt-px" />
               Studio
             </button>
           </nav>
 
-          {/* GitHub link */}
+          {/* GitHub */}
           <a
-            href="https://github.com/manojVibeCoding/CodeMuse"
+            href="https://github.com/manojkagitha/CodeMuse"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs text-[var(--text-dim)] hover:text-white hover:bg-white/[0.03] transition-all"
           >
-            <Github className="w-4 h-4" />
-            <span className="hidden sm:inline">GitHub</span>
+            <Github className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Source</span>
           </a>
         </div>
       </div>

@@ -8,25 +8,36 @@ interface GalleryProps {
 
 export default function Gallery({ onSelectSketch }: GalleryProps) {
   return (
-    <section id="gallery" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="gallery" className="py-20 px-5 sm:px-8 max-w-6xl mx-auto">
       {/* Section header */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-          Generative Art <span className="gradient-text">Gallery</span>
+      <div className="mb-14">
+        <p className="section-label mb-3 text-purple-400/50">G A L L E R Y</p>
+        <h2
+          className="text-3xl sm:text-4xl font-bold text-white mb-3"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          Generative Art <span className="gradient-text">Collection</span>
         </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto">
-          Explore 7 unique generative art algorithms. Each piece is rendered in real-time on HTML5 Canvas — click any artwork to open it in the interactive Studio with full parameter controls.
+        <p className="text-sm text-[var(--text-dim)] max-w-lg">
+          Seven algorithms that turn math into visual poetry. Each piece renders live on Canvas — tap any card to enter the Studio.
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sketches.map((sketch) => (
-          <ArtCard
+      {/* Bento Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sketches.map((sketch, i) => (
+          <div
             key={sketch.id}
-            sketch={sketch}
-            onSelect={onSelectSketch}
-          />
+            className={`${
+              i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''
+            } ${i === 3 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+          >
+            <ArtCard
+              sketch={sketch}
+              onSelect={onSelectSketch}
+              featured={i === 0}
+            />
+          </div>
         ))}
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { Terminal, Copy, Check, Server, Wrench, Palette, Zap, Lightbulb } from 'lucide-react';
+import { Copy, Check, Wrench, Palette, Zap, Lightbulb } from 'lucide-react';
 import { useState } from 'react';
 
 export default function MCPSection() {
@@ -13,139 +13,144 @@ export default function MCPSection() {
   const tools = [
     {
       name: 'generate_art',
-      icon: <Palette className="w-5 h-5 text-purple-400" />,
-      description: 'Generate p5.js or Canvas API code for a specific art style',
-      params: 'style: "flow-field" | "particles" | "fractal" | "waves" | "spirograph" | "mandala" | "starfield"',
+      icon: <Palette className="w-4 h-4 text-purple-400" />,
+      description: 'Get complete, runnable generative art code for 7 different styles',
+      accent: 'border-purple-500/10 hover:border-purple-500/25',
     },
     {
       name: 'create_color_palette',
-      icon: <Zap className="w-5 h-5 text-amber-400" />,
-      description: 'Generate harmonious color palettes for creative coding projects',
-      params: 'mood: "warm" | "cool" | "neon" | "pastel" | "monochrome" | "cyberpunk"',
+      icon: <Zap className="w-4 h-4 text-amber-400" />,
+      description: 'Generate harmonious color palettes — warm, cool, neon, pastel, cyberpunk',
+      accent: 'border-amber-500/10 hover:border-amber-500/25',
     },
     {
       name: 'creative_challenge',
-      icon: <Lightbulb className="w-5 h-5 text-emerald-400" />,
-      description: 'Get a random creative coding challenge with hints and starter code',
-      params: 'difficulty: "beginner" | "intermediate" | "advanced"',
+      icon: <Lightbulb className="w-4 h-4 text-emerald-400" />,
+      description: 'Get creative coding challenges with hints and starter code',
+      accent: 'border-emerald-500/10 hover:border-emerald-500/25',
     },
     {
       name: 'code_to_animation',
-      icon: <Wrench className="w-5 h-5 text-cyan-400" />,
-      description: 'Generate CSS/JS animation code from natural language descriptions',
-      params: 'description: string, type: "css" | "canvas" | "svg"',
+      icon: <Wrench className="w-4 h-4 text-cyan-400" />,
+      description: 'Generate CSS, Canvas, or SVG animations from plain English',
+      accent: 'border-cyan-500/10 hover:border-cyan-500/25',
     },
   ];
 
-  const configSnippet = `// .vscode/mcp.json
-{
+  const configSnippet = `{
   "servers": {
     "codemuse": {
-      "command": "npx",
-      "args": ["codemuse-mcp-server"],
-      "env": {}
+      "command": "node",
+      "args": ["./mcp-server/dist/index.js"]
     }
   }
 }`;
 
-  const usageSnippet = `// In GitHub Copilot Chat, try:
-// "Generate a flow field generative art sketch"
-// "Create a cyberpunk color palette for my project"
-// "Give me a creative coding challenge"
-// "Create a bouncing particle animation in Canvas"`;
+  const usageSnippet = `// Ask Copilot Chat:
+"Generate a flow field art sketch"
+"Create a cyberpunk palette"
+"Give me a creative challenge"
+"Animate bouncing particles"`;
 
   return (
-    <section id="mcp-server" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="mcp-server" className="py-20 px-5 sm:px-8 max-w-6xl mx-auto">
       {/* Section Header */}
-      <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm mb-6">
-          <Server className="w-4 h-4" />
-          MCP Server for GitHub Copilot
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-          Extend Copilot with <span className="gradient-text">Creative Powers</span>
+      <div className="mb-14">
+        <p className="section-label mb-3 text-cyan-400/50">M C P &nbsp; S E R V E R</p>
+        <h2
+          className="text-3xl sm:text-4xl font-bold text-white mb-3"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          Copilot gains <span className="gradient-text">creative powers.</span>
         </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto">
-          CodeMuse includes a Model Context Protocol (MCP) server that adds creative coding tools directly to GitHub Copilot in VS Code. Generate art, get color palettes, and tackle creative challenges — all from Copilot Chat.
+        <p className="text-sm text-[var(--text-dim)] max-w-lg">
+          A Model Context Protocol server that plugs into VS Code, giving GitHub Copilot four creative coding tools — right inside Chat.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Tools List */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-            <Wrench className="w-5 h-5 text-indigo-400" />
-            Available Tools
-          </h3>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        {/* Tools - 3 cols */}
+        <div className="lg:col-span-3 space-y-3">
           {tools.map((tool) => (
-            <div key={tool.name} className="glass-card rounded-xl p-4">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5">{tool.icon}</div>
-                <div>
-                  <h4 className="text-white font-medium font-mono text-sm">{tool.name}</h4>
-                  <p className="text-slate-400 text-sm mt-1">{tool.description}</p>
-                  <code className="text-xs text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded mt-2 inline-block">
-                    {tool.params}
-                  </code>
-                </div>
+            <div
+              key={tool.name}
+              className={`cosmic-card-static p-4 flex items-start gap-3 ${tool.accent} transition-all duration-300`}
+            >
+              <div className="mt-0.5 w-8 h-8 rounded-xl bg-white/[0.03] flex items-center justify-center flex-shrink-0">
+                {tool.icon}
+              </div>
+              <div>
+                <h4
+                  className="text-sm text-white font-medium"
+                  style={{ fontFamily: 'var(--font-mono)' }}
+                >
+                  {tool.name}
+                </h4>
+                <p className="text-xs text-[var(--text-dim)] mt-0.5 leading-relaxed">{tool.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Setup Instructions */}
-        <div className="space-y-6">
-          <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-            <Terminal className="w-5 h-5 text-pink-400" />
-            Quick Setup
-          </h3>
-
-          {/* Install */}
-          <div className="glass-card rounded-xl p-5">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="text-sm font-medium text-white">1. Install the MCP Server</h4>
-              <button
-                onClick={() => copyToClipboard('npm install -g codemuse-mcp-server', 'install')}
-                className="flex items-center gap-1 text-xs text-slate-400 hover:text-white transition-colors"
-              >
-                {copiedId === 'install' ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
-              </button>
-            </div>
-            <pre className="bg-[#0d0d15] rounded-lg p-3 text-sm">
-              <code className="text-green-400 font-mono">npm install -g codemuse-mcp-server</code>
-            </pre>
-          </div>
-
-          {/* Configure */}
-          <div className="glass-card rounded-xl p-5">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="text-sm font-medium text-white">2. Configure VS Code</h4>
+        {/* Setup - 2 cols */}
+        <div className="lg:col-span-2 space-y-3">
+          {/* Config */}
+          <div className="cosmic-card-static p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="text-xs font-medium text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                .vscode/mcp.json
+              </h4>
               <button
                 onClick={() => copyToClipboard(configSnippet, 'config')}
-                className="flex items-center gap-1 text-xs text-slate-400 hover:text-white transition-colors"
+                className="flex items-center gap-1 text-[0.6rem] text-[var(--text-muted)] hover:text-white transition-colors"
               >
-                {copiedId === 'config' ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
+                {copiedId === 'config' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
               </button>
             </div>
-            <pre className="bg-[#0d0d15] rounded-lg p-3 text-sm overflow-x-auto">
-              <code className="text-slate-300 font-mono whitespace-pre">{configSnippet}</code>
+            <pre className="bg-[var(--void)] rounded-xl p-3 text-[0.7rem] overflow-x-auto">
+              <code className="text-[var(--text-dim)] whitespace-pre" style={{ fontFamily: 'var(--font-mono)' }}>{configSnippet}</code>
             </pre>
           </div>
 
           {/* Usage */}
-          <div className="glass-card rounded-xl p-5">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="text-sm font-medium text-white">3. Use in Copilot Chat</h4>
+          <div className="cosmic-card-static p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="text-xs font-medium text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                Try in Copilot Chat
+              </h4>
               <button
                 onClick={() => copyToClipboard(usageSnippet, 'usage')}
-                className="flex items-center gap-1 text-xs text-slate-400 hover:text-white transition-colors"
+                className="flex items-center gap-1 text-[0.6rem] text-[var(--text-muted)] hover:text-white transition-colors"
               >
-                {copiedId === 'usage' ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
+                {copiedId === 'usage' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
               </button>
             </div>
-            <pre className="bg-[#0d0d15] rounded-lg p-3 text-sm overflow-x-auto">
-              <code className="text-slate-300 font-mono whitespace-pre">{usageSnippet}</code>
+            <pre className="bg-[var(--void)] rounded-xl p-3 text-[0.7rem] overflow-x-auto">
+              <code className="text-[var(--text-dim)] whitespace-pre" style={{ fontFamily: 'var(--font-mono)' }}>{usageSnippet}</code>
             </pre>
+          </div>
+
+          {/* Install hint */}
+          <div className="cosmic-card-static p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="text-xs font-medium text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                Quick Start
+              </h4>
+            </div>
+            <div className="space-y-1.5">
+              {[
+                'cd mcp-server && npm install',
+                'npm run build',
+                'Reload VS Code window',
+              ].map((step, i) => (
+                <div key={i} className="flex items-center gap-2 text-[0.7rem]">
+                  <span className="w-4 h-4 rounded-md bg-purple-500/10 text-purple-400 flex items-center justify-center text-[0.6rem] flex-shrink-0">
+                    {i + 1}
+                  </span>
+                  <span className="text-[var(--text-dim)]" style={{ fontFamily: 'var(--font-mono)' }}>{step}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

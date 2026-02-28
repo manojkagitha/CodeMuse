@@ -55,7 +55,7 @@ export default function CanvasRenderer({ sketch, params, width = 600, height = 4
   return (
     <canvas
       ref={canvasRef}
-      className={`rounded-xl ${className}`}
+      className={`rounded-2xl ${className}`}
       style={{ width, height }}
     />
   );
