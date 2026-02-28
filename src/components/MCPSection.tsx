@@ -1,4 +1,4 @@
-import { Copy, Check, Wrench, Palette, Zap, Lightbulb } from 'lucide-react';
+import { Copy, Check, Wrench, Palette, Zap, Lightbulb, Sparkles, Type } from 'lucide-react';
 import { useState } from 'react';
 
 export default function MCPSection() {
@@ -35,6 +35,18 @@ export default function MCPSection() {
       description: 'Generate CSS, Canvas, or SVG animations from plain English',
       accent: 'border-cyan-500/10 hover:border-cyan-500/25',
     },
+    {
+      name: 'suggest_brand_scene',
+      icon: <Sparkles className="w-4 h-4 text-rose-400" />,
+      description: 'Get brand palettes, background scenes, and typography for any vibe',
+      accent: 'border-rose-500/10 hover:border-rose-500/25',
+    },
+    {
+      name: 'ascii_style',
+      icon: <Type className="w-4 h-4 text-indigo-400" />,
+      description: 'Get ASCII art charsets, density settings, and conversion code',
+      accent: 'border-indigo-500/10 hover:border-indigo-500/25',
+    },
   ];
 
   const configSnippet = `{
@@ -49,6 +61,8 @@ export default function MCPSection() {
   const usageSnippet = `// Ask Copilot Chat:
 "Generate a flow field art sketch"
 "Create a cyberpunk palette"
+"Suggest a brand scene for my app"
+"Give me ASCII art settings"
 "Give me a creative challenge"
 "Animate bouncing particles"`;
 
@@ -64,7 +78,7 @@ export default function MCPSection() {
           Copilot gains <span className="gradient-text">creative powers.</span>
         </h2>
         <p className="text-sm text-[var(--text-dim)] max-w-lg">
-          A Model Context Protocol server that plugs into VS Code, giving GitHub Copilot four creative coding tools — right inside Chat.
+          A Model Context Protocol server that plugs into VS Code, giving GitHub Copilot six creative coding tools — right inside Chat.
         </p>
       </div>
 

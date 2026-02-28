@@ -1,48 +1,81 @@
-# 🎨 CodeMuse — AI-Powered Creative Coding Companion
+# 🎨 CodeMuse — Visual Story & Palette Studio
 
 > **Microsoft Agents League 2026 — Creative Apps Track (Battle #1)**
 >
-> Generate stunning generative art, explore mathematical beauty, and extend GitHub Copilot with creative coding tools through our MCP server.
+> A scroll-driven visual experience that fuses generative art, brand palette generation, ASCII art export, and an MCP server that gives GitHub Copilot creative superpowers.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Built with Copilot](https://img.shields.io/badge/Built%20with-GitHub%20Copilot-8957e5)](https://github.com/features/copilot)
-[![MCP Server](https://img.shields.io/badge/MCP-Server%20Included-00d4aa)](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
+[![MCP Server](https://img.shields.io/badge/MCP-6%20Tools-00d4aa)](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 [![Agents League](https://img.shields.io/badge/Agents%20League-2026-ff6b6b)](https://github.com/microsoft/agentsleague)
 
 ---
 
 ## ✨ What is CodeMuse?
 
-CodeMuse is a **dual-mode creative coding platform** built entirely with GitHub Copilot:
+CodeMuse is a **Visual Story & Palette Studio** — a creative platform where:
 
-### 🖼️ Interactive Web Gallery
-A stunning React web app featuring **7 real-time generative art algorithms** rendered on HTML5 Canvas:
+- The **sky literally changes** as you scroll (night → dawn → day → sunset), driven by a real-time Canvas background engine
+- **7 generative art algorithms** render live with interactive controls
+- A **Design Assistant** generates deterministic color palettes and logo/layout ideas from project vibes
+- Any canvas artwork can be **exported as ASCII art** with configurable charsets
+- An **MCP server** with 6 tools gives GitHub Copilot visual creativity capabilities
 
-| Artwork | Category | Description |
-|---------|----------|-------------|
-| 🌊 **Flow Field** | Generative | Particles flowing along noise-based vector fields |
-| ✨ **Cosmic Nebula** | Particle | Gravitational particle system with orbital dynamics |
-| 🌳 **Living Fractal Tree** | Fractal | Recursive tree with wind animation and seasonal colors |
-| 🎵 **Wave Interference** | Wave | Overlapping sine waves creating moiré patterns |
-| 🚀 **Hyperspace Stars** | Interactive | Warp-speed star field with parallax depth |
-| 🎯 **Spirograph Engine** | Generative | Mathematical epicycloid curves in motion |
-| 🔮 **Digital Mandala** | Generative | Sacred geometry with breathing animation |
+### 🌗 Scroll-Driven Sky Engine
+The entire page background evolves through time-of-day phases as you scroll:
+
+| Scroll | Phase | Visual |
+|--------|-------|--------|
+| 0–25% | **Night** | Deep void blue, full stars & constellation lines |
+| 25–50% | **Dawn** | Stars fade, warm rose/amber horizon glow |
+| 50–75% | **Day** | Soft blue-sky gradient, no stars |
+| 75–100% | **Sunset** | Golden-to-purple gradient, stars reappear |
+
+### 🖼️ Generative Art Gallery
+Seven real-time algorithms rendered on HTML5 Canvas with **hover-to-reveal algorithm details**:
+
+| Artwork | Math | Technique |
+|---------|------|-----------|
+| 🌊 **Flow Field** | Perlin noise → vector angle | Particle advection along noise-derived flow vectors |
+| ✨ **Cosmic Nebula** | F = G·m/r² | N-body orbital dynamics with trail fading |
+| 🌳 **Living Fractal Tree** | L → L·ratio | Depth-limited recursion with wind perturbation |
+| 🎵 **Wave Interference** | sin(ωx + φ) superposition | Multi-layer sine interference with phase offset |
+| 🚀 **Hyperspace Stars** | scale = f/z | 3D→2D projection with parallax velocity |
+| 🎯 **Spirograph Engine** | (R−r)cos(θ) + d·cos((R−r)θ/r) | Epicycloid parametric curve tracing |
+| 🔮 **Digital Mandala** | θ = 2π/n | N-fold radial mirroring with breathing radius |
 
 Each artwork features:
 - **Live canvas rendering** at 60fps
+- **Hover overlay** revealing the algorithm name, math formula, and technique
 - **Interactive parameter controls** (sliders for real-time adjustment)
 - **Source code viewer** with copy-to-clipboard
-- **PNG export** to save your creations
+- **PNG export** and **ASCII art export**
+
+### 🎨 Design Assistant
+A built-in brand identity tool that generates:
+- **Color palettes** (5 colors with hex codes, names, and CSS variables)
+- **Logo & layout suggestions** (3 concepts per vibe)
+- Vibes: Bold, Calm, Tech, Playful, Minimal, Cosmic
+
+All deterministic — no external API keys required.
+
+### ⣿ ASCII Art Export
+Convert any live canvas artwork to ASCII art:
+- Configurable columns/rows (20–200 cols)
+- Brightness-to-character mapping via luminance
+- Copy to clipboard or download as `.txt`
 
 ### 🔌 MCP Server for GitHub Copilot
-A **Model Context Protocol server** that integrates directly into VS Code, giving GitHub Copilot creative coding superpowers:
+A **Model Context Protocol server** with **6 creative coding tools**:
 
 | Tool | Description |
 |------|-------------|
-| `generate_art` | Get complete, runnable generative art code for 7 different styles |
-| `create_color_palette` | Generate harmonious color palettes (warm, cool, neon, pastel, cyberpunk, monochrome) |
-| `creative_challenge` | Get creative coding challenges with hints and starter code |
-| `code_to_animation` | Generate CSS, Canvas, or SVG animations from descriptions |
+| `generate_art` | Complete, runnable generative art code for 7 styles |
+| `create_color_palette` | Harmonious color palettes (warm, cool, neon, pastel, cyberpunk, monochrome) |
+| `creative_challenge` | Creative coding challenges with hints and starter code |
+| `code_to_animation` | CSS, Canvas, or SVG animations from natural language |
+| `suggest_brand_scene` | Brand palettes, background scenes, and typography for any vibe |
+| `ascii_style` | ASCII art charsets, density settings, and conversion code |
 
 ---
 
@@ -56,7 +89,7 @@ A **Model Context Protocol server** that integrates directly into VS Code, givin
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR-USERNAME/CodeMuse.git
+git clone https://github.com/kagithamanoj/CodeMuse.git
 cd CodeMuse
 
 # Install dependencies
@@ -66,7 +99,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) and explore the gallery!
+Open [http://localhost:5173](http://localhost:5173) and scroll to watch the sky evolve!
 
 ### Set Up the MCP Server
 
@@ -98,6 +131,8 @@ Then add to your VS Code MCP configuration (`.vscode/mcp.json`):
 Now in Copilot Chat, try:
 - *"Generate a flow field generative art sketch"*
 - *"Create a cyberpunk color palette for my project"*
+- *"Suggest a brand scene for a playful app called Fizz"*
+- *"What ASCII art style should I use for dense images?"*
 - *"Give me an advanced creative coding challenge"*
 - *"Create a bouncing particle animation in Canvas"*
 
@@ -108,15 +143,21 @@ Now in Copilot Chat, try:
 ```
 CodeMuse/
 ├── src/                          # React Web Application
-│   ├── App.tsx                   # Main app with routing (gallery/studio)
+│   ├── App.tsx                   # Main app with scroll layout + sky engine
 │   ├── components/
+│   │   ├── BackgroundScene.tsx   # Scroll-driven sky (night→dawn→day→sunset)
+│   │   ├── ScrollLayout.tsx      # Scroll progress tracker (0→1)
 │   │   ├── Header.tsx            # Navigation with glass-morphism
-│   │   ├── Hero.tsx              # Animated landing with gradient effects
+│   │   ├── Hero.tsx              # "Visual Story & Palette Studio" landing
 │   │   ├── Gallery.tsx           # Art grid with live canvas previews
-│   │   ├── ArtCard.tsx           # Individual artwork cards
+│   │   ├── ArtCard.tsx           # Cards with hover-to-reveal algorithm details
 │   │   ├── CanvasRenderer.tsx    # Generic canvas animation engine
-│   │   ├── Studio.tsx            # Full-screen studio with controls
-│   │   ├── MCPSection.tsx        # MCP server documentation section
+│   │   ├── Studio.tsx            # Full studio with controls + ASCII export
+│   │   ├── DesignAssistantPanel.tsx  # Palette & logo suggestion generator
+│   │   ├── AsciiArtModal.tsx     # Canvas → ASCII art converter
+│   │   ├── MCPSection.tsx        # MCP server documentation (6 tools)
+│   │   ├── ZoneOut.tsx           # Poetic interstitial section
+│   │   ├── ConstellationBg.tsx   # Static constellation canvas (legacy)
 │   │   └── Footer.tsx            # Links and attribution
 │   ├── sketches/                 # Generative Art Algorithms
 │   │   ├── flowField.ts          # 🌊 Noise-based flow field
@@ -130,7 +171,7 @@ CodeMuse/
 │   └── types/                    # TypeScript type definitions
 ├── mcp-server/                   # MCP Server for GitHub Copilot
 │   ├── src/
-│   │   ├── index.ts              # Server entry point (stdio transport)
+│   │   ├── index.ts              # Server with 6 tools (stdio transport)
 │   │   └── templates/            # Art templates, palettes, challenges
 │   └── package.json
 ├── .vscode/mcp.json              # VS Code MCP configuration
@@ -139,41 +180,40 @@ CodeMuse/
 
 ### Design Decisions
 
-1. **No external AI API required** — All generative art is algorithmic (Canvas 2D), making it reliable and fast. The MCP server uses curated templates rather than LLM calls, ensuring consistent, high-quality output.
+1. **Scroll-driven background** — The `BackgroundScene` component reads `scrollProgress` (0→1) and computes sky gradients + star alpha per frame using `requestAnimationFrame`. Stars fade during day and reappear at sunset, creating a time-of-day narrative as users explore the page.
 
-2. **Separation of concerns** — Each sketch is a self-contained module with its own parameters, render function, and code snippet. This makes it easy to add new art styles.
+2. **Deterministic design assistant** — All palette/logo suggestions use a hash-based variant selection from curated vibe libraries. No external AI APIs needed — reliable, fast, and zero-configuration.
 
-3. **Device pixel ratio support** — Canvas renders at native resolution for crisp output on Retina/HiDPI displays.
+3. **ASCII art via luminance mapping** — Canvas pixels are downsampled to a configurable grid, luminance-mapped to a 10-character charset for instant text-art conversion.
 
-4. **MCP over stdio** — The MCP server uses standard I/O transport for seamless VS Code integration with zero configuration.
+4. **Hover-to-reveal on art cards** — Each card stores algorithm metadata (math formula + technique). A hover overlay animates in to show the computational details behind each piece.
+
+5. **No external AI API required** — All generative art is algorithmic (Canvas 2D), and the MCP server uses curated templates. Consistent, high-quality output with zero configuration.
+
+6. **MCP over stdio** — The MCP server uses standard I/O transport for seamless VS Code Copilot integration.
 
 ---
 
 ## 🤖 How GitHub Copilot Helped Build This
 
-This project was built **entirely with GitHub Copilot assistance** in VS Code. Here's how Copilot contributed:
+This project was built **entirely with GitHub Copilot assistance** in VS Code:
 
 ### Code Generation
-- **Generative art algorithms**: Copilot suggested the mathematical formulas for spirograph (epicycloid equations), Perlin-like noise for flow fields, and recursive branching for fractal trees
-- **React components**: Copilot generated the component structure, Tailwind CSS classes, and state management patterns
-- **MCP server**: Copilot helped implement the MCP SDK integration, tool definitions, and request handlers
+- **Scroll-based sky engine**: Copilot helped design the color interpolation logic for smooth night→dawn→day→sunset transitions
+- **Generative art algorithms**: Copilot suggested mathematical formulas for spirograph (epicycloid equations), Perlin-like noise for flow fields, and recursive branching for fractal trees
+- **Design Assistant**: Copilot generated the vibe-to-palette mapping system with curated color harmonies
+- **ASCII art converter**: Copilot recommended the luminance-to-character mapping approach with configurable density
+- **MCP server**: Copilot implemented all 6 tool definitions, request handlers, and brand scene templates
 
 ### Problem Solving
-- **Canvas performance**: Copilot suggested using `requestAnimationFrame` with trail effects (semi-transparent overlays) instead of `clearRect` for smooth motion trails
-- **Responsive design**: Copilot recommended the glass-morphism card approach with backdrop-filter for the modern UI
-- **Type safety**: Copilot generated TypeScript interfaces for sketch configs, parameters, and MCP tool schemas
+- **Canvas performance**: Copilot suggested using `requestAnimationFrame` with linear color interpolation for smooth background transitions
+- **Scroll tracking**: Copilot recommended a passive scroll listener with render-prop pattern for efficient re-renders
+- **Hover reveals**: Copilot designed the overlay animation with transform + opacity for smooth reveal transitions
 
-### Creative Inspiration
-- When prompted with "suggest mathematical patterns for generative art", Copilot recommended:
-  - Epicycloid/hypocycloid curves for the spirograph
-  - Sacred geometry with rotational symmetry for the mandala
-  - Wave superposition with moiré effects for interference patterns
-  - N-body gravitational simulation for the particle nebula
-
-### Documentation
-- README structure and badges
-- Code comments and JSDoc annotations
-- Architecture documentation
+### Creative Design
+- Night-to-day sky narrative that tells a visual story as users scroll
+- Algorithm metadata overlay combining math notation with plain-English technique descriptions
+- Deterministic palette generation that produces consistent results from project names
 
 ---
 
@@ -183,9 +223,10 @@ This project was built **entirely with GitHub Copilot assistance** in VS Code. H
 
 | Requirement | Status | Details |
 |-------------|--------|---------|
-| GitHub Copilot usage | ✅ | Entire project built with Copilot — code gen, debugging, docs |
-| Creative application | ✅ | Generative art gallery with 7 unique algorithms |
-| MCP server integration | ✅ | 4 creative coding tools for Copilot Chat |
+| GitHub Copilot usage | ✅ | Entire project built with Copilot — code gen, debugging, design |
+| Creative application | ✅ | Visual story engine, generative art, palette studio, ASCII export |
+| MCP server integration | ✅ | 6 creative tools for Copilot Chat |
+| Visual Creativity | ✅ | Scroll-driven sky, hover reveals, brand design assistant |
 | Public repository | ✅ | MIT licensed, fully documented |
 | Demo-able | ✅ | Web app runs locally with `npm run dev` |
 
@@ -193,12 +234,12 @@ This project was built **entirely with GitHub Copilot assistance** in VS Code. H
 
 | Criteria | Weight | How CodeMuse Addresses It |
 |----------|--------|---------------------------|
-| **Accuracy & Relevance** | 20% | Meets all Creative Apps requirements, MCP integration as encouraged |
-| **Reasoning & Multi-step** | 20% | Multi-step pipeline: user input → style selection → parameter tuning → real-time render → export; MCP: description → template matching → code generation |
-| **Creativity & Originality** | 15% | 7 unique generative art algorithms, MCP server for Copilot is a novel approach, mathematical art (spirographs, mandalas, fractals) |
-| **UX & Presentation** | 15% | Dark glass-morphism UI, animated hero, live canvas previews, interactive parameter controls, responsive design |
-| **Reliability & Safety** | 20% | No API keys needed, template-based MCP for consistent output, input validation, graceful error handling, no external data dependencies |
-| **Community Vote** | 10% | Visually appealing demos, shareable PNG exports |
+| **Accuracy & Relevance** | 20% | Meets all Creative Apps requirements; 6-tool MCP server; visual creativity focus |
+| **Reasoning & Multi-step** | 20% | Scroll → sky phase → color interpolation → star alpha; Name + vibe → hash → palette → CSS vars; Canvas → downsample → luminance → ASCII |
+| **Creativity & Originality** | 15% | Scroll-driven sky narrative, hover-to-reveal math overlays, deterministic brand assistant, ASCII art export |
+| **UX & Presentation** | 15% | Evolving background, cosmic glass-morphism UI, live canvas previews, interactive parameter controls |
+| **Reliability & Safety** | 20% | No API keys needed, deterministic outputs, template-based MCP, input validation, graceful error handling |
+| **Community Vote** | 10% | Visually stunning scroll experience, shareable PNG/ASCII exports |
 
 ---
 
@@ -210,9 +251,9 @@ This project was built **entirely with GitHub Copilot assistance** in VS Code. H
 | **TypeScript** | Type-safe development |
 | **Vite** | Lightning-fast build tool |
 | **Tailwind CSS 4** | Utility-first styling |
-| **HTML5 Canvas** | Real-time generative art rendering |
-| **Lucide React** | Beautiful icon library |
-| **MCP SDK** | Model Context Protocol server |
+| **HTML5 Canvas** | Real-time generative art + scroll-driven sky |
+| **Lucide React** | Icon library |
+| **MCP SDK** | Model Context Protocol server (6 tools) |
 | **GitHub Copilot** | AI-assisted development throughout |
 
 ---
@@ -221,17 +262,22 @@ This project was built **entirely with GitHub Copilot assistance** in VS Code. H
 
 ### Web Gallery
 1. Run `npm run dev` and open [localhost:5173](http://localhost:5173)
-2. Scroll through the gallery to see live generative art previews
-3. Click any artwork to open the Studio
-4. Adjust parameters with sliders and watch the art transform in real-time
-5. Download your favorite creations as PNG
+2. **Scroll slowly** to watch the sky evolve from night through dawn, day, and sunset
+3. Hover over art cards to see the **algorithm math and techniques** revealed
+4. Click any artwork to open the Studio
+5. Adjust parameters with sliders and watch the art transform in real-time
+6. Click the **⣿ ASCII** button to export as text art
+7. Use the **Design Assistant** to generate brand palettes and logo ideas
+8. Download your favorite creations as PNG
 
 ### MCP Server in Action
 1. Build the MCP server: `cd mcp-server && npm install && npm run build`
 2. Open VS Code with the project
 3. The `.vscode/mcp.json` config auto-loads the server
-4. Open Copilot Chat and ask: *"Generate a fractal tree generative art sketch"*
-5. Copilot uses the `generate_art` tool to return complete, runnable code!
+4. Open Copilot Chat and try:
+   - *"Generate a fractal tree generative art sketch"*
+   - *"Suggest a brand scene for a cosmic app called Aurora"*
+   - *"What ASCII style works best for detailed images?"*
 
 ---
 
@@ -239,9 +285,10 @@ This project was built **entirely with GitHub Copilot assistance** in VS Code. H
 
 Contributions are welcome! Here are some ideas:
 - Add new generative art algorithms (Voronoi diagrams, L-systems, cellular automata)
-- Enhance the MCP server with more tools
+- Enhance the Design Assistant with font pairing suggestions
 - Add audio reactivity using Web Audio API
 - Implement gallery sharing with URL-encoded parameters
+- Add more ASCII art charsets and export formats
 
 ---
 
@@ -262,5 +309,5 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 ---
 
 <p align="center">
-  <strong>Code</strong><em>Muse</em> — Where code meets creativity ✨
+  <strong>Code</strong><em>Muse</em> — Visual Story & Palette Studio ✨
 </p>

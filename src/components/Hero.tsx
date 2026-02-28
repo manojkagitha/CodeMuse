@@ -1,4 +1,4 @@
-import { ArrowDown, Wand2, Terminal, Cpu, Sparkles } from 'lucide-react';
+import { ArrowDown, Wand2, Terminal, Palette, Sparkles, Eye } from 'lucide-react';
 
 interface HeroProps {
   onExplore: () => void;
@@ -20,23 +20,23 @@ export default function Hero({ onExplore }: HeroProps) {
         <div className="animate-fade-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/15 bg-purple-500/[0.06] mb-10">
           <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
           <span className="text-xs text-purple-300/80" style={{ fontFamily: 'var(--font-body)' }}>
-            Microsoft Agents League 2026
+            Microsoft Agents League 2026 — Visual Creativity
           </span>
         </div>
 
         {/* Title */}
         <h1 className="animate-fade-up text-5xl sm:text-6xl lg:text-[4.5rem] font-extrabold leading-[1.05] mb-5 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-          <span className="text-white">Where code meets </span>
+          <span className="text-white">Visual Story & </span>
           <br className="hidden sm:block" />
-          <span className="gradient-text">the cosmos.</span>
+          <span className="gradient-text">Palette Studio.</span>
         </h1>
 
         {/* Subtitle */}
         <p className="animate-fade-up-d1 text-lg sm:text-xl text-[var(--text-dim)] leading-relaxed mb-4 max-w-xl mx-auto">
-          Generate generative art from algorithms that mirror the universe — flow fields, fractals, constellations, and more.
+          Generative art, brand palettes, and ASCII exports — powered by algorithms that paint the cosmos.
         </p>
         <p className="animate-fade-up-d1 text-sm text-[var(--text-muted)] mb-10 max-w-md mx-auto">
-          Paired with an MCP server that gives GitHub Copilot creative superpowers.
+          Scroll to watch the sky evolve. Hover to reveal the math. Create with Copilot.
         </p>
 
         {/* CTA */}
@@ -54,22 +54,23 @@ export default function Hero({ onExplore }: HeroProps) {
             <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
           </button>
           <a
-            href="#mcp-server"
+            href="#design-assistant"
             className="flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-medium text-[var(--text-dim)] transition-all duration-300
               border border-white/[0.06] hover:border-purple-500/20 hover:text-white hover:bg-white/[0.02]"
           >
-            <Terminal className="w-4 h-4" />
-            MCP Server
+            <Palette className="w-4 h-4" />
+            Design Assistant
           </a>
         </div>
 
-        {/* Feature pills - compact */}
+        {/* Feature pills */}
         <div className="animate-fade-up-d3 flex flex-wrap items-center justify-center gap-2">
           {[
             { icon: <Wand2 className="w-3 h-3" />, label: '7 Art Algorithms' },
+            { icon: <Eye className="w-3 h-3" />, label: 'Scroll-driven Sky' },
+            { icon: <Palette className="w-3 h-3" />, label: 'Palette Generator' },
             { icon: <Terminal className="w-3 h-3" />, label: 'MCP for Copilot' },
-            { icon: <Cpu className="w-3 h-3" />, label: 'Real-time Canvas' },
-            { icon: <Sparkles className="w-3 h-3" />, label: 'Built with Copilot' },
+            { icon: <Sparkles className="w-3 h-3" />, label: 'ASCII Export' },
           ].map((feature) => (
             <div
               key={feature.label}

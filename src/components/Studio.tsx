@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Code, Sliders, RotateCcw, Download, Copy, Check, ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import { Code, Sliders, RotateCcw, Download, Copy, Check, ArrowLeft, ChevronDown, ChevronUp, Type } from 'lucide-react';
 import type { SketchConfig } from '../types';
 import CanvasRenderer from './CanvasRenderer';
+import AsciiArtModal from './AsciiArtModal';
 
 interface StudioProps {
   sketch: SketchConfig;
@@ -17,6 +18,7 @@ export default function Studio({ sketch, onBack }: StudioProps) {
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showParams, setShowParams] = useState(true);
+  const [showAscii, setShowAscii] = useState(false);
 
   const handleParamChange = (id: string, value: number) => {
     setParams(prev => ({ ...prev, [id]: value }));
@@ -76,6 +78,13 @@ export default function Studio({ sketch, onBack }: StudioProps) {
                 <p className="text-xs text-[var(--text-dim)] mt-0.5">{sketch.description}</p>
               </div>
               <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setShowAscii(true)}
+                  className="p-2 rounded-xl text-[var(--text-dim)] hover:text-white hover:bg-purple-500/10 transition-all"
+                  title="View as ASCII Art"
+                >
+                  <Type className="w-4 h-4" />
+                </button>
                 <button
                   onClick={handleDownload}
                   className="p-2 rounded-xl text-[var(--text-dim)] hover:text-white hover:bg-purple-500/10 transition-all"
@@ -214,6 +223,11 @@ export default function Studio({ sketch, onBack }: StudioProps) {
           </div>
         </div>
       </div>
+
+      {/* ASCII Art Modal */}
+      {showAscii && (
+        <AsciiArtModal onClose={() => setShowAscii(false)} />
+      )}
     </div>
   );
 }

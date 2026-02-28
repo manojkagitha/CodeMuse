@@ -17,7 +17,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-xs text-[var(--text-muted)] leading-relaxed max-w-xs">
-              Generative art meets AI coding tools. Where algorithms paint the cosmos.
+              Visual Story & Palette Studio — generative art, brand palettes, and AI coding tools.
             </p>
           </div>
 
@@ -52,7 +52,7 @@ export default function Footer() {
               Built for Microsoft Agents League 2026 — Creative Apps Track.
             </p>
             <a
-              href="https://github.com/manojkagitha/CodeMuse"
+              href="https://github.com/kagithamanoj/CodeMuse"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs text-[var(--text-dim)] border border-white/[0.05] hover:border-purple-500/20 hover:text-white hover:bg-white/[0.02] transition-all"

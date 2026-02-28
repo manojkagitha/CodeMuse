@@ -59,7 +59,7 @@ export default function Header({ view, onViewChange }: HeaderProps) {
 
           {/* GitHub */}
           <a
-            href="https://github.com/manojkagitha/CodeMuse"
+            href="https://github.com/kagithamanoj/CodeMuse"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs text-[var(--text-dim)] hover:text-white hover:bg-white/[0.03] transition-all"

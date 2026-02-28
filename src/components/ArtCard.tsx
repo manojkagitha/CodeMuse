@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Info } from 'lucide-react';
 import type { SketchConfig } from '../types';
 import CanvasRenderer from './CanvasRenderer';
 
@@ -8,9 +8,22 @@ interface ArtCardProps {
   featured?: boolean;
 }
 
+// Algorithm details for hover reveal
+const algorithmDetails: Record<string, { math: string; technique: string }> = {
+  'flow-field': { math: 'Perlin noise → vector angle', technique: 'Particle advection along noise-derived flow vectors' },
+  'particle-system': { math: 'Gravitational force: F = G·m/r²', technique: 'N-body orbital dynamics with trail fading' },
+  'fractal-tree': { math: 'Recursive branching: L → L·ratio', technique: 'Depth-limited recursion with wind perturbation' },
+  'wave-pattern': { math: 'sin(ωx + φ) superposition', technique: 'Multi-layer sine interference with phase offset' },
+  'star-field': { math: 'z-depth perspective: scale = f/z', technique: '3D→2D projection with parallax velocity' },
+  'spirograph': { math: 'x = (R−r)cos(θ) + d·cos((R−r)θ/r)', technique: 'Epicycloid parametric curve tracing' },
+  'mandala': { math: 'Rotational symmetry: θ = 2π/n', technique: 'N-fold radial mirroring with breathing radius' },
+};
+
 export default function ArtCard({ sketch, onSelect, featured = false }: ArtCardProps) {
   const defaultParams: Record<string, number> = {};
   sketch.params.forEach(p => { defaultParams[p.id] = p.default; });
+
+  const details = algorithmDetails[sketch.id] || { math: 'Algorithmic', technique: 'Canvas 2D rendering' };
 
   const categoryAccent: Record<string, string> = {
     generative: 'text-purple-400 bg-purple-500/10 border-purple-500/15',
@@ -35,8 +48,25 @@ export default function ArtCard({ sketch, onSelect, featured = false }: ArtCardP
           className="w-full"
         />
 
-        {/* Hover overlay with arrow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--void)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+        {/* Hover overlay — algorithm details reveal */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--void)] via-[var(--void)]/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-4">
+          <div className="translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <Info className="w-3 h-3 text-cyan-400" />
+              <span className="text-[0.6rem] text-cyan-400 font-medium uppercase tracking-wider" style={{ fontFamily: 'var(--font-display)' }}>
+                Algorithm
+              </span>
+            </div>
+            <p className="text-[0.65rem] text-white/90 mb-1" style={{ fontFamily: 'var(--font-mono)' }}>
+              {details.math}
+            </p>
+            <p className="text-[0.6rem] text-[var(--text-dim)] leading-relaxed">
+              {details.technique}
+            </p>
+          </div>
+        </div>
+
+        {/* Arrow button */}
         <div className="absolute bottom-3 right-3 w-9 h-9 rounded-xl bg-purple-500/80 backdrop-blur-sm flex items-center justify-center
           opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-400 shadow-lg shadow-purple-500/30">
           <ArrowUpRight className="w-4 h-4 text-white" />

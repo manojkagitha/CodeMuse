@@ -106,6 +106,42 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['description', 'type'],
         },
       },
+      {
+        name: 'suggest_brand_scene',
+        description:
+          'Generate a brand-oriented visual package: a color palette, a background scene description, and typography suggestions based on a project vibe. Vibes: bold, calm, tech, playful, minimal, cosmic.',
+        inputSchema: {
+          type: 'object' as const,
+          properties: {
+            projectName: {
+              type: 'string',
+              description: 'Name of the project or brand',
+            },
+            vibe: {
+              type: 'string',
+              enum: ['bold', 'calm', 'tech', 'playful', 'minimal', 'cosmic'],
+              description: 'The visual vibe / mood for the brand',
+            },
+          },
+          required: ['projectName', 'vibe'],
+        },
+      },
+      {
+        name: 'ascii_style',
+        description:
+          'Get ASCII art settings: charset, density, and recommended dimensions for converting images or canvas content to ASCII art.',
+        inputSchema: {
+          type: 'object' as const,
+          properties: {
+            style: {
+              type: 'string',
+              enum: ['standard', 'dense', 'blocks', 'minimal', 'braille'],
+              description: 'ASCII art style/charset to use',
+            },
+          },
+          required: ['style'],
+        },
+      },
     ],
   };
 });
@@ -290,6 +326,113 @@ animate();`,
           {
             type: 'text' as const,
             text: `# ✨ Generated Animation\n\n**Description:** ${description}\n**Type:** ${type.toUpperCase()}\n\n\`\`\`${type === 'svg' ? 'html' : type === 'css' ? 'css' : 'javascript'}\n${code}\n\`\`\`\n\n**Tips:**\n- Customize the timing, colors, and easing functions\n- Combine multiple animations for complex effects\n- Use CSS custom properties for easy theming`,
+          },
+        ],
+      };
+    }
+
+    case 'suggest_brand_scene': {
+      const { projectName, vibe } = args as { projectName: string; vibe: string };
+
+      const brandScenes: Record<string, { palette: string[]; background: string; typography: string; scene: string }> = {
+        bold: {
+          palette: ['#FF3366', '#FF6633', '#FFCC00', '#1A1A2E', '#FFFFFF'],
+          background: 'Explosive gradient — hot pink to orange diagonal with dark overlay for contrast',
+          typography: 'Heavy Syne for headlines (900), Space Grotesk for body text, all caps section labels',
+          scene: 'High-energy abstract — overlapping geometric shapes with neon glow edges',
+        },
+        calm: {
+          palette: ['#A8D8EA', '#AA96DA', '#FCBAD3', '#FFFFD2', '#7EC8E3'],
+          background: 'Soft pastel watercolor wash — misty lavender to blush gradient with organic noise',
+          typography: 'Light serif for headlines, rounded sans for body, generous letter-spacing',
+          scene: 'Gentle organic — floating botanical silhouettes with soft depth-of-field blur',
+        },
+        tech: {
+          palette: ['#0D1117', '#161B22', '#58A6FF', '#3FB950', '#F78166'],
+          background: 'Terminal dark — near-black with subtle grid pattern and green/blue code highlights',
+          typography: 'Monospace for headlines (JetBrains Mono), clean sans for body, code block accents',
+          scene: 'Matrix-inspired — falling characters, circuit traces, glowing data nodes',
+        },
+        playful: {
+          palette: ['#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181'],
+          background: 'Candy gradient — multi-color gradient with rounded blob shapes and confetti particles',
+          typography: 'Bouncy display font for headlines, friendly rounded sans for body, emoji accents',
+          scene: 'Fun geometric — bouncing circles, squiggly lines, rainbow gradients with grain texture',
+        },
+        minimal: {
+          palette: ['#FAFAFA', '#E5E5E5', '#A3A3A3', '#525252', '#171717'],
+          background: 'Clean white or near-white with a single thin accent line, maximum whitespace',
+          typography: 'Ultra-light sans-serif for headlines, book-weight for body, no decorations',
+          scene: 'Swiss design — clean grid, single accent element, generous negative space',
+        },
+        cosmic: {
+          palette: ['#030014', '#A855F7', '#06B6D4', '#F59E0B', '#F472B6'],
+          background: 'Deep void (030014) with radial purple nebula glow, animated constellation lines',
+          typography: 'Syne display for headlines, Space Grotesk for body, Space Mono for code',
+          scene: 'Night sky canvas — twinkling stars with constellation lines, nebula blobs, scroll-driven sky transitions',
+        },
+      };
+
+      const brand = brandScenes[vibe] || brandScenes.cosmic;
+
+      return {
+        content: [
+          {
+            type: 'text' as const,
+            text: `# 🎨 Brand Scene for "${projectName}"\n\n**Vibe:** ${vibe}\n\n## Color Palette\n${brand.palette.map((c, i) => `  ${i + 1}. \`${c}\``).join('\n')}\n\n\`\`\`css\n:root {\n${brand.palette.map((c, i) => `  --brand-${i + 1}: ${c};`).join('\n')}\n}\n\`\`\`\n\n## Background\n${brand.background}\n\n## Typography\n${brand.typography}\n\n## Scene Description\n${brand.scene}\n\n---\n*Use these suggestions as a starting point. Mix vibes for a unique identity!*`,
+          },
+        ],
+      };
+    }
+
+    case 'ascii_style': {
+      const { style } = args as { style: string };
+
+      const asciiStyles: Record<string, { charset: string; density: string; cols: number; rows: number; description: string }> = {
+        standard: {
+          charset: ' .:-=+*#%@',
+          density: '10 levels',
+          cols: 100,
+          rows: 50,
+          description: 'Classic ASCII art charset with 10 brightness levels — good for most images',
+        },
+        dense: {
+          charset: ' .,:;i1tfLCG08@',
+          density: '15 levels',
+          cols: 120,
+          rows: 60,
+          description: 'High-detail charset with 15 levels — better for complex images with subtle shading',
+        },
+        blocks: {
+          charset: ' ░▒▓█',
+          density: '5 levels (Unicode blocks)',
+          cols: 80,
+          rows: 40,
+          description: 'Unicode block characters for a retro terminal look',
+        },
+        minimal: {
+          charset: ' ·•●',
+          density: '4 levels',
+          cols: 60,
+          rows: 30,
+          description: 'Minimal dot-based charset — clean, modern, understated',
+        },
+        braille: {
+          charset: '⠀⠁⠃⠇⠏⠟⠿⣿',
+          density: '8 levels (Braille patterns)',
+          cols: 80,
+          rows: 40,
+          description: 'Braille Unicode patterns for ultra-high-resolution ASCII art in compact space',
+        },
+      };
+
+      const config = asciiStyles[style] || asciiStyles.standard;
+
+      return {
+        content: [
+          {
+            type: 'text' as const,
+            text: `# ⣿ ASCII Art Style: ${style}\n\n${config.description}\n\n## Settings\n- **Charset:** \`${config.charset}\`\n- **Density:** ${config.density}\n- **Recommended size:** ${config.cols}×${config.rows}\n\n## Usage in JavaScript\n\`\`\`javascript\nconst ASCII_CHARS = '${config.charset}';\nconst COLS = ${config.cols};\nconst ROWS = ${config.rows};\n\nfunction pixelToAscii(brightness) {\n  // brightness: 0 (black) to 1 (white)\n  const index = Math.floor(brightness * (ASCII_CHARS.length - 1));\n  return ASCII_CHARS[index];\n}\n\`\`\`\n\n## Tips\n- Use a monospace font for proper alignment\n- Adjust COLS/ROWS based on your terminal width\n- For dark backgrounds, reverse the charset order`,
           },
         ],
       };
